@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Propiedades publicas</title>
+</head>
+<body>
+	<script>
+		function Persona(dni, nombre) {
+			var _this = this; //propieda privada
+			var edad = 0;  // propiedad privada
+			var edadParaSaludar = 1;  //propiedad privada
+
+			this.dni = dni;
+			this.nombre = nombre;
+
+			//Metodos que accedan a las propiedades o metodos privados aqui
+			function envejecer(){    //metodo privado
+				edad++;          // puede acceder a la propiedad privada edad
+				if(edad >= edadParaSaludar){
+					_this.saludar('');
+				}
+			}
+
+			Persona.prototype.crecer = function(){   //Metodo publico que permite acceder al
+				envercer();                            // al metodo privado envejecer
+			}
+		}
+
+		Persona.prototype.saludar = function(nombre){
+				console.log(this.nombre + ' te saluda ' +nombre);
+		}
+		
+		var yo = new Persona('1', 'Marcos');
+		console.log(yo.edad);
+		// devuelve undefined ya que edad no se encuentra en el objeto
+		// al no estar declarada a traves de this
+		yo.saludar('Pepito');
+		yo.crecer();
+	</script>
+</body>
+</html>

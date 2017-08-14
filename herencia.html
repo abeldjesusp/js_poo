@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Herencia Javascript!</title>
+</head>
+<body>
+	<script>
+		function Persona(dni, nombre) {   //clase padre
+			this.dni = dni;
+			this.nombre = nombre;
+		}
+
+		Persona.prototype.saludar = function() {
+			console.log('Hola me llamo '+this.nombre);
+		};
+
+		function Estudiante(dni, nombre, numeroMatricula){       // Clase hija
+			//llamando al constructor de la clase padre
+			Persona.prototype.constructor.call(this, dni, nombre);
+			//propiedad disponible solo para clase hija
+			this.numeroMatricula = numeroMatricula;
+		}
+
+		//apuntando a una instancia de la clase padre. Sobreescribiendo prototype
+		Estudiante.prototype = new Persona();
+		//hacer que la clase hija apunte a su contructor y no al del padre
+		Estudiante.prototype.constructor = Estudiante;
+
+		//metodo disponible solo para clase hija
+		Estudiante.prototype.estudiar = function(){
+			console.log('estudiando...');
+		}
+
+		var yo = new Estudiante('1', 'Marcos', '12');
+		yo.saludar();
+		yo.estudiar();
+
+		console.log(yo.constructor);
+	</script>
+</body>
+</html>

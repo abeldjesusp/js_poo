@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Propiedades publicas</title>
+</head>
+<body>
+	<script>
+		//Primera forma
+
+		// function Persona() {
+		// 	this.dni = '';           //Asi se crea 
+		// 	this.nombre = '';			// un constructor
+		// }
+		// var yo = new Persona();
+		// var tu = new Persona();
+
+		// yo.dni = '1234567';
+		// yo.nombre = 'Marcos';
+		// tu.dni = '3454554';
+		// tu.nombre = 'Pedro';
+
+		/*-----------------------------------------------------*/
+
+		//Segunda forma
+		function Persona(dni, nombre) {
+			this.dni = dni;           //Asi se crea 
+			this.nombre = nombre;			// un constructor (this)
+		}
+		var yo = new Persona('1234567', 'Marcos');  // Instanciando un nuevo
+		var tu = new Persona('3454554', 'Pedro');   //objeto de la clase Persona
+
+		console.log(yo);
+		console.log(tu);
+	</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Prototipos en JavaScript</title>
+</head>
+<body>
+	<script>
+		function Persona(dni,nombre) {
+			this.dni = dni;
+			this.nombre = nombre;
+			this.numeroPiernas = 2; // Esta propiedad tiene mas prioridad que la de prototype
+		}
+
+		Persona.prototype.saludar = function(){
+			console.log('Hola me llamo '+ this.nombre);
+		}
+
+		var yo = new Persona('1234567', 'Marcos');
+		var yo = new Persona('3438438', 'Pedro');
+
+		Persona.prototype.numeroPiernas = 2;
+		Persona.prototype.prueba = function(){
+
+		}
+
+		console.log(yo);
+		console.log(tu);
+
+		yo.saludar();
+		tu.saludar();
+
+		Persona.prototype.numeroPiernas = 3; // Esta propiedad tiene menos prioridad que la del objeto
+		
+		console.log(yo);
+		console.log(tu);
+	</script>
+</body>
+</html>

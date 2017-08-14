@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Propiedades privasdas</title>
+</head>
+<body>
+	<script>
+	//Forma de crear una propiedad privada. No es una buena practica
+		function Persona(dni, nombre) {
+			var edad = 0;				// declarando la propiedad privada
+
+			this.dni = dni;
+			this.nombre = nombre;
+
+			//Metodos que acceden a la propiedad privada aqui
+		}
+
+		var yo = new Persona('1', 'Marcos');
+		console.log(yo.edad);  //llamando a la propiedad privada edad. Retorna undefined
+	</script>
+</body>
+</html>

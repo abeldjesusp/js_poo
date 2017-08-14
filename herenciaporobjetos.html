@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Herencia basada en objetos</title>
+</head>
+<body>
+	<script>
+		//primera aproximacion
+
+		//objeto literal
+		var persona = {
+			dni: '',
+			nombre: '',
+			amigos: null,
+
+			//constructor
+			init: function(dni, nombre){
+				this.dni = dni;
+				this.nombre = nombre;
+				this.amigos = new Array();
+
+				return this;
+			},
+
+			//metodo 
+			saludar: function(){
+				console.log('Hola me llamo'+this.nombre);
+			}
+		};
+
+		//objeto que hereda
+		var estudiante = new Object.create(persona);
+		estudiante.numeroMatricula = '';
+		estudiante.init = function(dni, nombre, numeroMatricula){
+			persona.init.call(this, dni, nombre);
+			this.numeroMatricula = numeroMatricula;
+
+			return this;
+		}
+
+		//metodo
+		estudiante.estudiar = function(){
+			console.log('estuandiando > '+this.numeroMatricula);
+		}
+
+		//instanciando
+		var yo = Object.create(estudiante).init('1','Marcos','12');
+		yo.saludar();
+		yo.numeroMatricula = '333';
+		yo.estudiar();
+
+				//Segunda aproximacion
+
+		//objeto literal
+		var persona = {
+			dni: '',
+			nombre: '',
+			amigos: null,
+
+			//constructor
+			init: function(dni, nombre){
+				this.dni = dni;
+				this.nombre = nombre;
+				this.amigos = new Array();
+
+				return this;
+			},
+
+			//metodo 
+			saludar: function(){
+				console.log('Hola me llamo'+this.nombre);
+			}
+		};
+
+		//objeto que hereda
+		var estudiante = Object.create(persona, {
+			numeroMatricula: {
+				get: function(){
+					return this.value;
+				},
+				set: function(){
+					this.value = newValue;
+				}
+			},
+			//constructor
+			init: {
+				value: function(dni, nombre, numeroMatricula){
+						persona.init.call(this, dni, nombre);
+						this.numeroMatricula = numeroMatricula;
+						return this;
+				}
+			},
+
+			estudiar: {
+				value: function(){
+					console.log('estuandiando > '+this.numeroMatricula);
+				}
+			}
+		})
+
+		//instanciando
+		var yo = Object.create(estudiante).init('1','Marcos','12');
+		yo.saludar();
+		yo.numeroMatricula = '333';
+		yo.estudiar();
+
+		//aproximacion clasica
+		/*function Persona(dni, nombre) {
+			this.dni = dni;
+			this.nombre = nombre;
+		}
+
+		Persona.prototype.saludar = function() {
+			console.log('Hola me llamo '+this.nombre);
+		};
+
+		function Estudiante(dni, nombre, numeroMatricula){       // Clase hija
+			//llamando al constructor de la clase padre
+			Persona.prototype.constructor.call(this, dni, nombre);
+			//propiedad disponible solo para clase hija
+			this.numeroMatricula = numeroMatricula;
+		}
+
+		//apuntando a una instancia de la clase padre. Sobreescribiendo prototype
+		Estudiante.prototype = new Persona();
+		//hacer que la clase hija apunte a su contructor y no al del padre
+		Estudiante.prototype.constructor = Estudiante;
+
+		//metodo disponible solo para clase hija
+		Estudiante.prototype.estudiar = function(){
+			console.log('estudiando...');
+		}
+
+		var yo = new Estudiante('1', 'Marcos', '12');
+		yo.saludar();
+		yo.estudiar();
+
+		console.log(yo.constructor);*/
+	</script>
+</body>
+</html>

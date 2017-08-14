@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Objetos literales en JS</title>
+</head>
+<body>
+	<script>
+		var generico = {
+			nombre: 'Mi objeto',
+			edad: 15,
+			saludar: function(nombre) {
+				console.log('Hola '+nombre);			
+			}
+		};
+
+		console.log(generico.nombre);
+		generico.saludar('Abel');
+	</script>
+</body>
+</html>

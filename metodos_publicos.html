@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Propiedades publicas</title>
+</head>
+<body>
+	<script>
+		//Primera forma
+
+		function Persona(dni, nombre) {
+			this.dni = dni;
+			this.nombre = nombre;
+
+			this.saludar = function(nombre){
+				console.log(this.nombre + ' te saluda ' +nombre);
+			}
+		}
+
+		var yo = new Persona('1', 'Marcos');
+		yo.dni = '1234567'; 		// Al igual que se instancia un metodo
+		yo.saludar('Pepito');   // Se instancia un metodo
+
+		/*De esta forma todas las instancias contaran con diferentes metodos saludar desperdiciando espacio en memoria. Todos los metodos deben ser propios de la clase y no de la instancia*/
+
+
+	/*-----------------------------------------------------*/
+
+		//Segunda forma
+		function Persona(dni, nombre) {
+			this.dni = dni;
+			this.nombre = nombre;
+			}
+		}
+
+		Persona.prototype.saludar = function(nombre){
+				console.log(this.nombre + ' te saluda ' +nombre);
+		}
+		/*De esta forma el metodo saludar pertencec al prototipo por lo tanto es compartido con todas las instancias. Esta forma tiene mejor ahoro de memoria*/
+		var yo = new Persona('1', 'Marcos');
+		yo.dni = '1234567'; 		// Al igual que se instancia un metodo
+		yo.saludar('Pepito');   // Se instancia un metodo
+	</script>
+</body>
+</html>
